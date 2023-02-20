@@ -1,0 +1,14 @@
+.home-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-text {
+    margin-left: 5em;
+    text-align: center;
+}
+
+span {
+    color: #DEC129;
+}
