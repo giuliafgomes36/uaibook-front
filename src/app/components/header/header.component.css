@@ -1,0 +1,30 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    border-bottom: 1px solid #777;
+}
+
+.brand, .links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.brand img {
+    width: 60px;
+    margin-right: 0.6em;
+}
+
+.links li {
+    margin-right: 1em;
+    list-style: none;
+}
+
+.links li :hover {
+    background-color: #efefef;
+}
+
+.links a {
+    padding: 0.1em 0.3em;
+}

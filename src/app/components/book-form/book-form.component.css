@@ -1,0 +1,7 @@
+.check {
+    display: flex;
+}
+
+.check p {
+    margin-left: 0.6em;
+}
