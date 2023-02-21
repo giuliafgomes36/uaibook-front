@@ -3,5 +3,5 @@ export interface User {
     name?: string;
     cpf?: string;
     email?: string;
-    telefone?: string;
+    telephone?: string;
 }

@@ -3,5 +3,5 @@ export interface Employee {
     name?: string;
     cpf?: string;
     email?: string;
-    telefone?: string;
+    telephone?: string;
 }

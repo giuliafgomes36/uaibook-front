@@ -35,19 +35,12 @@ export class LoanService {
     return this.http.delete(this.apiUrl + "/" + loan.id, { observe: 'response' })
   }
 
-  getUser(): string[] {
-    let names:string[] = []
-    this.http.get<Array<any>>(this.userUrl).subscribe(b => {
-        b.map(c => {
-        console.log(c.name)
-        names.push(c.name)
-      })
-    })
-    console.log(names)
-    return names
-    // let names = users.forEach((next) => next.map((user) => user.name)).then( (user) => console.log(user))
-    // // console.log(names);
-    // return name;
+  getUser(): Observable<User[]> {
+    return this.http.get<User[]>(this.userUrl);
+  }
+
+  getEmployee(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.employeeUrl);
   }
 
 }
