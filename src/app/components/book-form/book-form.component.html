@@ -1,49 +1,85 @@
 <div class="bookForm">
-    <div class="books"> 
-        <h2>Livros cadastrados</h2>
-        <div *ngFor="let book of books; let i index">
-            <b class="bookListItem" (click)="selectBook(book)">• {{book.name}}</b>
+  <div class="books">
+    <h2>Livros cadastrados</h2>
+    <div *ngFor="let book of books; let i; index">
+      <b class="bookListItem" (click)="selectBook(book)">• {{ book.name }}</b>
+    </div>
+  </div>
+  <div>
+    <form [formGroup]="bookForm" #formDir="ngForm">
+      <div class="actions">
+        <button class="btn btn-primary" (click)="new()">Novo</button>
+        <button class="btn btn-primary" (click)="delete()">Excluir</button>
+      </div>
+      <div class="form-group">
+        <label for="name">Título:</label>
+        <input
+          type="text"
+          placeholder="Coloque um título."
+          formControlName="name"
+          [(ngModel)]="displayedBook.name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="isbn">ISBN:</label>
+        <input
+          type="text"
+          placeholder="Coloque o ISBN."
+          formControlName="isbn"
+          [(ngModel)]="displayedBook.isbn"
+        />
+      </div>
+      <div class="form-group">
+        <label for="authors">Autor:</label>
+        <input
+          type="text"
+          placeholder="Coloque o autor."
+          formControlName="authors"
+          [(ngModel)]="displayedBook.authors"
+        />
+      </div>
+      <div class="form-group">
+        <label for="year">Ano de lançamento:</label>
+        <input
+          type="number"
+          placeholder="Coloque o ano de lançamento."
+          formControlName="year"
+          [(ngModel)]="displayedBook.year"
+        />
+      </div>
+      <div class="form-group">
+        <label for="amount">Quantidade de livros:</label>
+        <input
+          type="number"
+          placeholder="Coloque a quantidade de livros."
+          formControlName="amount"
+          [(ngModel)]="displayedBook.amount"
+        />
+      </div>
+      <div class="form-group">
+        <label for="publisher">Editora:</label>
+        <input
+          type="text"
+          placeholder="Coloque a editora."
+          formControlName="publisher"
+          [(ngModel)]="displayedBook.publisher"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="category">Categoria:</label>
+        <div class="check" *ngFor="let categoria of categoriasDisponiveis">
+          <input
+            id="{{ categoria }}"
+            type="checkbox"
+            value="{{ categoria }}"
+            formControlName="category"
+            (click)="selecionarCategoria($event)"
+          />
+          <p>{{ categoria }}</p>
         </div>
-    </div>
-    <div>
-        <form [formGroup]="bookForm" #formDir="ngForm">
-            <div class="actions">
-                <button class="btn btn-primary" (click)="new()">Novo</button>
-                <button class="btn btn-primary" (click)="delete()">Excluir</button>
-            </div>
-            <div class="form-group">
-                <label for="name">Título:</label>
-                <input type="text" placeholder="Coloque um título." formControlName="name" [(ngModel)]="displayedBook.name">
-            </div>
-            <div class="form-group">
-                <label for="isbn">ISBN:</label>
-                <input type="text" placeholder="Coloque o ISBN." formControlName="isbn" [(ngModel)]="displayedBook.isbn">
-            </div>
-            <div class="form-group">
-                <label for="authors">Autor:</label>
-                <input type="text" placeholder="Coloque o autor." formControlName="authors" [(ngModel)]="displayedBook.authors">
-            </div>
-            <div class="form-group">
-                <label for="year">Ano de lançamento:</label>
-                <input type="number" placeholder="Coloque o ano de lançamento." formControlName="year" [(ngModel)]="displayedBook.year">
-            </div>
-            <div class="form-group">
-                <label for="amount">Quantidade de livros:</label>
-                <input type="number" placeholder="Coloque a quantidade de livros." formControlName="amount" [(ngModel)]="displayedBook.amount">
-            </div>
-            <div class="form-group">
-                <label for="publisher">Editora:</label>
-                <input type="text" placeholder="Coloque a editora." formControlName="publisher" [(ngModel)]="displayedBook.publisher" required>
-            </div>
-            <div class="form-group">
-                <label for="category">Categoria:</label>
-                <div class="check" *ngFor="let categoria of categoriasDisponiveis">
-                    <input id={{categoria}} type="checkbox" value={{categoria}} formControlName="category"
-                        (click)="selecionarCategoria($event)">
-                    <p>{{categoria}}</p>
-                </div>
-            </div>
-            <input type="submit" (click)="saveOrUpdate()" value="Salvar">
-        </form>
-    </div>
+      </div>
+      <input type="submit" (click)="saveOrUpdate()" value="Salvar" />
+    </form>
+  </div>
 </div>

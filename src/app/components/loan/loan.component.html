@@ -1,1 +1,41 @@
-<p>loan works!</p>
+<div class="loanForm">
+    <div class="loans">
+        <h2>Lista de Empréstimos</h2>
+        <div>
+            <b class="loanListItem">• </b>
+        </div>
+    </div>
+    <div>
+        <form #formDir="ngForm">
+            <div class="actions">
+                <button class="btn btn-primary">Novo</button>
+                <button class="btn btn-primary" (click)="getUser()">Excluir</button>
+            </div>
+            <div class="form-group">
+                <label for="user">Usuário:</label>
+                <input type="text" placeholder="Usuário">
+            </div>
+            <div class="form-group">
+                <label for="employee">Funcionário:</label>
+                <input type="text" placeholder="Funcionário">
+            </div>
+            <div class="form-group">
+                <label for="book">Livro:</label>
+                <input type="text" placeholder="Livro">
+            </div>
+            <div class="form-group">
+                <label for="loanDate">Data Inicial:</label>
+                <input type="text" placeholder="Data Inicial" readonly="true">
+            </div>
+            <div class="form-group">
+                <label for="devolutionDate">Data Final:</label>
+                <input type="text" placeholder="Data Inicial" readonly="true">
+            </div>
+            <div class="form-group">
+                <label for="isOpen">Situação:</label>
+                <input type="text" placeholder="Situação">
+            </div>
+            <input type="submit" value="Salvar">
+        </form>
+    </div>
+</div>

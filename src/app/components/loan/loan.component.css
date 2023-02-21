@@ -1,0 +1,46 @@
+.loanForm {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.loans {
+    margin-top: 47.75px;
+}
+
+.loanListItem {
+    cursor: pointer;
+}
+
+.loanListItem:hover {
+    color: #dec129;
+}
+
+.loanList, .form {
+    border: 1pt solid #efefef;
+}
+
+.actions {
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+.actions button {
+    margin-left: 8pt;
+}
+
+.btn-primary {
+    background-color: #efefef;
+    border: 2px solid transparent;
+    padding: 0.6em 1em;
+    font-weight: bold;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: 0.4s;
+    color: black;
+}
+
+.btn-primary:hover {
+    color: #dec129;
+    border-color: #dec129;
+    background-color: transparent;
+}
