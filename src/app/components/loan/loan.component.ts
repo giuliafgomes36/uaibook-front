@@ -15,12 +15,13 @@ import { BookService } from 'src/app/services/book.service';
   templateUrl: './loan.component.html',
   styleUrls: ['./loan.component.css'],
 })
-export class LoanComponent implements OnInit{
+export class LoanComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Loan>();
   btnText: string = "Salvar"
 
   loanForm!: FormGroup
   disableFixedFields: boolean = false
+  situacao: string = "Situação"
 
   private baseApiUrl = 'http://localhost:8080';
 
@@ -39,7 +40,7 @@ export class LoanComponent implements OnInit{
     book: undefined,
   }
 
-  constructor(private loanService: LoanService, private bookService: BookService,private toastrService: ToastrService) { }
+  constructor(private loanService: LoanService, private bookService: BookService, private toastrService: ToastrService) { }
 
   resetLoan() {
     this.displayedLoan = {
@@ -51,22 +52,26 @@ export class LoanComponent implements OnInit{
       employee: undefined,
       book: undefined,
     }
+
+    this.updateSaveButton()
+    this.updateSituacao()
   }
 
   ngOnInit(): void {
-      this.loanForm = new FormGroup({
-        id: new FormControl(''),
-        user: new FormControl(''),
-        employee: new FormControl(''),
-        book: new FormControl(''),
-        loanDate: new FormControl(''),
-        devolutionDate: new FormControl(''),
-        isOpen: new FormControl('')
-      })
+    this.loanForm = new FormGroup({
+      id: new FormControl(''),
+      user: new FormControl(''),
+      employee: new FormControl(''),
+      book: new FormControl(''),
+      loanDate: new FormControl(''),
+      devolutionDate: new FormControl(''),
+      isOpen: new FormControl('')
+    })
 
-      this.getUser();
-      this.getEmployee();
-      this.getBooks();
+    this.getLoans();
+    this.getUser();
+    this.getEmployee();
+    this.getBooks();
   }
 
   getUser() {
@@ -76,7 +81,7 @@ export class LoanComponent implements OnInit{
       this.users = this.users.concat(c)
     })
   }
-  
+
   getEmployee() {
     var response = this.loanService.getEmployee()
     response.subscribe(c => {
@@ -103,14 +108,13 @@ export class LoanComponent implements OnInit{
 
   updateSaveButton() {
     if (this.displayedLoan.id != undefined) {
-      this.btnText = "Atualizar"
+      this.btnText = "Fechar Empréstimo"
     } else {
       this.btnText = "Salvar"
     }
   }
 
   saveOrUpdate() {
-
     // UPDATE
     console.log(this.displayedLoan)
     if (this.displayedLoan.id != undefined) {
@@ -173,11 +177,48 @@ export class LoanComponent implements OnInit{
     }
   }
 
-  new(){
+  new() {
     this.resetLoan()
   }
 
   selectLoan(loan: Loan) {
     this.displayedLoan = structuredClone(loan)
+    this.updateSaveButton()
+    this.updateSituacao()
+  }
+
+  updateSituacao() {
+    if (this.displayedLoan.isOpen == true) {
+      this.situacao = "Em Aberto"
+    }
+
+    if (this.displayedLoan.isOpen == false) {
+      this.situacao = "Fechado"
+    }
+
+    if(this.displayedLoan.isOpen == undefined){
+      this.situacao = "Situação"
+    }
+  }
+
+  isUsuarioSelected(user: User): boolean {
+    if (user.id == this.displayedLoan.user?.id) {
+      return true
+    }
+    return false
+  }
+
+  isFuncionarioSelected(employee: Employee): boolean {
+    if (employee.id == this.displayedLoan.employee?.id) {
+      return true
+    }
+    return false
+  }
+
+  isLivroSelected(book: Book): boolean {
+    if (book.id == this.displayedLoan.book?.id) {
+      return true
+    }
+    return false
   }
 }
