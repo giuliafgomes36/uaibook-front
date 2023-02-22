@@ -37,17 +37,17 @@
             </div>
             <div class="form-group">
                 <label for="loanDate">Data Inicial:</label>
-                <input type="text" placeholder="Data Inicial" readonly="true" formControlName="loanDate"
+                <input type="text" placeholder="Data de empréstimo: cadastrada automaticamente" readonly="true" formControlName="loanDate"
                     [(ngModel)]="displayedLoan.loanDate">
             </div>
             <div class="form-group">
                 <label for="devolutionDate">Data Final:</label>
-                <input type="text" placeholder="Data Inicial" readonly="true" formControlName="devolutionDate"
+                <input type="text" placeholder="Data de devolução: cadastrada automaticamente" readonly="true" formControlName="devolutionDate"
                     [(ngModel)]="displayedLoan.devolutionDate">
             </div>
             <div class="form-group">
                 <label for="isOpen">Situação:</label>
-                <input type="text" placeholder="Situação" formControlName="isOpen" [(ngModel)]="situacao">
+                <input type="text" readonly="true" placeholder="Situação" formControlName="isOpen" [(ngModel)]="situacao">
             </div>
             <input type="submit" (click)="saveOrUpdate()" value="{{btnText}}">
         </form>
